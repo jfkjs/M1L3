@@ -24,3 +24,10 @@ def ban_user(message):
         bot.reply_to(message, "Эта команда должна быть использована в ответ на сообщение пользователя, которого вы хотите забанить.")
 
 bot.infinity_polling(none_stop=True)
+
+
+@bot.message_handler(content_types=['new_chat_members'])
+def welcome_user(message):
+    bot.send_message(message.chat.id, 'I accepted a new user!')
+    bot.approve_chat_join_request(message.chat.id, message.from_user.id)
+
